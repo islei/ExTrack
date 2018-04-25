@@ -10,9 +10,11 @@ import { DbService } from "../../services/db.service";
 })
 export class HomePage {
 
+  nowDate: Date = new Date();
+
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public platform: Platform, private itemsService: ItemsService, private dbService: DbService) {
     this.platform.ready().then((readySource) => {
-
+      console.log(this.nowDate);
     });
   }
 

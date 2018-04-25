@@ -7,7 +7,22 @@ page-home {
     font-weight: 600;
     color: black;
   }
-  .item-expiry-date {
+  .item-expiry-text {
     font-size: 14px;
+    font-style: italic;
+  }
+  .item-expiry-date {
+    right: 15px;
+    position: absolute;
+  }
+  ion-item.expired {
+    >ion-icon, .item-expiry-text {
+      color: #931A00;
+    }
+  }
+  ion-item.expires-soon {
+    >ion-icon, .item-expiry-text  {
+      color: #936800;
+    }
   }
 }

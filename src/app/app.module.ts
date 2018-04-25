@@ -14,14 +14,15 @@ import { MessageService } from "../services/message.service";
 import { DbService } from "../services/db.service";
 import { ItemsService } from "../services/items.service";
 
-import { MomentFromNowPipe } from '../pipes/moment.pipe';
+import { MomentFromNowPipe, MomentFormatPipe } from '../pipes/moment.pipe';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AddItemModalPage,
-    MomentFromNowPipe
+    MomentFromNowPipe,
+    MomentFormatPipe
   ],
   imports: [
     BrowserModule,

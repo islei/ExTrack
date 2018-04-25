@@ -10,3 +10,13 @@ export class MomentFromNowPipe implements PipeTransform {
     return moment(value, "YYYY-MM-DD").fromNow();
   }
 }
+
+@Pipe({name: 'momentFormat'})
+
+export class MomentFormatPipe implements PipeTransform {
+  transform(value: string, args: string[]): any {
+    if (!value) return value;
+
+    return moment(value).format('LL');
+  }
+}

@@ -13,11 +13,12 @@
   </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let item of itemsService.items; let i = index">
-      <ion-item nopadding>
-        <ion-icon item-start name="albums" color="dark"></ion-icon>
+      <ion-item nopadding [class.expired]="item.status=='Expired'" [class.expires-soon]="item.status=='Expires soon'">
+        <ion-icon item-start name="albums"></ion-icon>
         <p>
           <span class="item-title">{{item.name}}</span><br>
-          <span class="itme-expiry-date">Expires {{item.expiryDate | momentFromNow}}</span>
+
+          <span class="item-expiry-text">{{item.status}} {{item.expiryDate | momentFromNow}}</span><span class="item-expiry-date"><ion-icon name="timer"></ion-icon> {{item.expiryDate | momentFormat}}</span>
         </p>
       </ion-item>
       <ion-item-options side="right">

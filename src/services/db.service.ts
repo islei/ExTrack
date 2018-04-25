@@ -38,7 +38,18 @@ export class DbService {
       let items = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          items.push({id: data.rows.item(i).id, name: data.rows.item(i).name, expiryDate: new Date(data.rows.item(i).expiry_date)});
+          let expiryDate = new Date(data.rows.item(i).expiry_date);
+          let d = new Date();
+          let status = '';
+          if (d.getTime() >= expiryDate.getTime()) {
+            status = 'Expired';
+          } else if (d.getTime() + (2* 24 * 60 * 60 * 1000) >= expiryDate.getTime()) {
+            status = 'Expires soon';
+          } else {
+            status = 'Expires';
+          }
+
+          items.push({id: data.rows.item(i).id, name: data.rows.item(i).name, expiryDate: expiryDate, status: status});
         }
       }
       return items;
