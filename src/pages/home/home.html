@@ -17,7 +17,7 @@
         <ion-icon item-start name="albums" color="dark"></ion-icon>
         <p>
           <span class="item-title">{{item.name}}</span><br>
-          <span class="itme-expiry-date">Expires: {{item.expiryDate}}</span>
+          <span class="itme-expiry-date">Expires {{item.expiryDate | momentFromNow}}</span>
         </p>
       </ion-item>
       <ion-item-options side="right">
@@ -26,9 +26,5 @@
         </button>
       </ion-item-options>
     </ion-item-sliding>
-    <!--<button ion-item (click)="test(item)" *ngFor="let item of itemsService.items; let i = index">
-      <ion-icon item-start name="basket" color="dark"></ion-icon>
-      <ion-label>{{item.name}} (Expires {{item.expiryDate}})</ion-label>
-    </button>-->
   </ion-list>
 </ion-content>

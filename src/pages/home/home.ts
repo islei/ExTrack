@@ -3,6 +3,7 @@ import { NavController, ModalController, Platform } from 'ionic-angular';
 import { AddItemModalPage } from '../add-item-modal/add-item-modal';
 import { ItemsService } from "../../services/items.service";
 import { DbService } from "../../services/db.service";
+import moment from "moment";
 
 @Component({
   selector: 'page-home',

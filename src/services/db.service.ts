@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { MessageService } from './message.service';
-
+import moment from 'moment';
 
 @Injectable()
 export class DbService {

@@ -12,13 +12,16 @@ import { AddItemModalPage } from '../pages/add-item-modal/add-item-modal';
 
 import { MessageService } from "../services/message.service";
 import { DbService } from "../services/db.service";
-import {ItemsService} from "../services/items.service";
+import { ItemsService } from "../services/items.service";
+
+import { MomentFromNowPipe } from '../pipes/moment.pipe';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddItemModalPage
+    AddItemModalPage,
+    MomentFromNowPipe
   ],
   imports: [
     BrowserModule,
