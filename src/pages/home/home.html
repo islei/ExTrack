@@ -1,23 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      <img src="assets/imgs/milk.png">
-      ExTrack Expiry Tracker
+      <img src="assets/imgs/clock.png">
+      Expiry Tracker
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-fab bottom right>
     <button ion-fab (click)="openAddItemModal()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let item of itemsService.items; let i = index">
       <ion-item nopadding>
-        <ion-icon item-start name="basket" color="dark"></ion-icon>
+        <ion-icon item-start name="albums" color="dark"></ion-icon>
         <p>
-          <span>{{item.name}}</span><br>
-          Expires: {{item.expiryDate}}
+          <span class="item-title">{{item.name}}</span><br>
+          <span class="itme-expiry-date">Expires: {{item.expiryDate}}</span>
         </p>
       </ion-item>
       <ion-item-options side="right">

@@ -22,9 +22,19 @@ export class MyApp {
       // init database
       dbService.init().then(
         d => {
-          dbService.getAllItems().then(data => {
+          /*dbService.getAllItems().then(data => {
             itemsService.items = data;
-          });
+          });*/
+          itemsService.items = [{
+            id: 1,
+            name: 'Office Milk',
+            expiryDate: '2018-04-28',
+          },{
+            id: 1,
+            name: 'Home Milk',
+            expiryDate: '2018-04-29',
+
+          }];
         }
       );
     });
