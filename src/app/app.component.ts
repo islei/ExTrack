@@ -28,11 +28,11 @@ export class MyApp {
           itemsService.items = [{
             id: 1,
             name: 'Office Milk',
-            expiryDate: '2018-04-28',
+            expiryDate: new Date('2018-04-28'),
           },{
             id: 2,
             name: 'Home Milk',
-            expiryDate: '2017-04-29',
+            expiryDate: new Date('2018-04-18'),
           }];
         }
       );
