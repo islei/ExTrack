@@ -35,7 +35,7 @@
       <ion-col col-12>
         <ion-item no-padding>
           <ion-label color="dark" stacked>Expiry Date</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY"  [(ngModel)]="itemExpiryDate">
+          <ion-datetime displayFormat="DD/MM/YYYY" min="2016" max="2030-12-31" [(ngModel)]="itemExpiryDate">
           </ion-datetime>
         </ion-item>
       </ion-col>
