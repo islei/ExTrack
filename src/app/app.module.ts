@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePicker } from '@ionic-native/date-picker';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -39,6 +40,7 @@ import { MomentFromNowPipe, MomentFormatPipe } from '../pipes/moment.pipe';
     SplashScreen,
     SQLite,
     DatePicker,
+    LocalNotifications,
     MessageService,
     DbService,
     ItemsService,

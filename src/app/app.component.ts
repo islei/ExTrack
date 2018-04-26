@@ -23,11 +23,11 @@ export class MyApp {
       dbService.init().then(
         d => {
           // for production
-          /*dbService.getAllItems().then(data => {
+          dbService.getAllItems().then(data => {
             itemsService.items = data;
-          });*/
+          });
           // for testing in browser
-          itemsService.items = [{
+          /*itemsService.items = [{
             id: 1,
             name: 'Office Milk',
             expiryDate: new Date('2018-04-28'),
@@ -42,7 +42,7 @@ export class MyApp {
             name: 'Office Milk 2',
             expiryDate: new Date('2018-04-30'),
             status: 'Expires',
-          }];
+          }];*/
         }
       );
     });
