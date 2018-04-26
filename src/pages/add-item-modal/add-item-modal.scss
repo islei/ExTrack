@@ -1,3 +1,14 @@
 page-add-item-modal {
-
+  ion-navbar {
+    button.bar-button{
+      margin-right: 10px;
+    }
+    button span.button-inner span {
+      color: white;
+      font-size: 1.8rem;
+    }
+    ion-icon {
+      color: white;
+    }
+  }
 }

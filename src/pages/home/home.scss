@@ -2,27 +2,25 @@ page-home {
   ion-fab .fab {
     background-color: #01445C;
   }
-  .item-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: black;
-  }
-  .item-expiry-text {
-    font-size: 14px;
-    font-style: italic;
-  }
-  .item-expiry-date {
-    right: 15px;
-    position: absolute;
+  ion-item {
+    .item-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: black;
+    }
+    .item-expiry-text {
+      font-size: 14px;
+      font-style: italic;
+    }
+    .item-expiry-date {
+      right: 15px;
+      position: absolute;
+    }
   }
   ion-item.expired {
-    >ion-icon, .item-expiry-text {
-      color: #931A00;
-    }
+    color: #931A00;
   }
   ion-item.expires-soon {
-    >ion-icon, .item-expiry-text  {
-      color: #936800;
-    }
+    color: #936800;
   }
 }

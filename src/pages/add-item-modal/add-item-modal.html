@@ -7,10 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Item</ion-title>
-    <ion-buttons end>
+    <ion-buttons left>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Add Item</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="checkmark"></ion-icon><span> Save</span>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -18,31 +23,21 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <h4>Item Name</h4>
-        <ion-item>
+        <ion-item no-padding>
+          <ion-label color="dark" stacked>Item Name</ion-label>
           <ion-input [(ngModel)]="itemName"></ion-input>
         </ion-item>
       </ion-col>
-    </ion-row>
-    <ion-row margin-top>
       <ion-col col-12>
-        <h4>Expiry Date</h4>
-        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="itemExpiryDate">
-        </ion-datetime>
-      </ion-col>
-    </ion-row>
-    <ion-row margin-top>
-      <ion-col col-6>
-        <button ion-button color="light" block no-margin (click)="closeModal()">Cancel
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button color="dark" block no-margin (click)="addItem()">Add Item
-        </button>
+        <ion-item no-padding>
+          <ion-label color="dark" stacked>Expiry Date</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY"  [(ngModel)]="itemExpiryDate">
+          </ion-datetime>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
