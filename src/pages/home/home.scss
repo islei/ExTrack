@@ -3,6 +3,9 @@ page-home {
     background-color: #01445C;
   }
   ion-item {
+    ion-icon[name=albums] {
+      color: #006A27;
+    }
     .item-title {
       font-size: 16px;
       font-weight: 600;
@@ -17,10 +20,10 @@ page-home {
       position: absolute;
     }
   }
-  ion-item.expired {
+  ion-item.expired, ion-item.expired ion-icon[name=albums] {
     color: #931A00;
   }
-  ion-item.expires-soon {
+  ion-item.expires-soon, ion-item.expires-soon ion-icon[name=albums] {
     color: #936800;
   }
 }
