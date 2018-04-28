@@ -46,16 +46,19 @@ export class AddItemModalPage {
     if (!this.itemExpiryDate) {
       this.messageService.show('The item expiry date is required');
     }
-    let name = this.itemName;
+    let itemName = this.itemName;
+    let itemExpiryDate = this.itemExpiryDate;
     // Save to db
-    this.dbService.storeItem(name, this.itemExpiryDate.substring(0, 10)).then(data => {
+    this.dbService.storeItem(itemName, itemExpiryDate.substring(0, 10)).then(data => {
       // refresh item list
       this.dbService.getAllItems().then(data => {
         this.itemsService.items = data;
         this.viewCtrl.dismiss();
       });
       // Schedule delayed notification
-      this.scheduleNotification(name, this.itemExpiryDate);
+      let notificationText = this.getNotificationText(itemName, itemExpiryDate);
+      let notificationDate = this.getNotificationDate(itemExpiryDate)
+      this.scheduleNotification(notificationText, notificationDate);
     });
   }
 
@@ -63,12 +66,20 @@ export class AddItemModalPage {
     this.viewCtrl.dismiss();
   }
 
-  private scheduleNotification(name:string, expiryDate:string) {
-    let notificationText = 'Item ' + name + ' is expiring soon on ' + expiryDate.substring(0, 10);
-    let notificationDate = new Date(new Date(expiryDate).getTime() - 2 * 24 * 60 * 60 * 1000);
+  private getNotificationText(itemName:string, itemExpiryDate:string) {
+    return 'Item ' + itemName + ' is expiring soon on ' + itemExpiryDate.substring(0, 10);
+  }
+
+  private getNotificationDate(itemExpiryDate:string) {
+    let expiryDate = new Date(itemExpiryDate).getTime();
+    let notificationDate = new Date( expiryDate - 2 * 24 * 60 * 60 * 1000);
+    return notificationDate;
+  }
+
+  private scheduleNotification(eventText:string, eventDate:Date) {
     this.localNotifications.schedule({
-      text: notificationText,
-      trigger: {at: notificationDate},
+      text: eventText,
+      trigger: {at: eventDate},
       led: 'FF0000',
       sound: null
     });
