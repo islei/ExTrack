@@ -4,7 +4,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { MessageService } from "../../services/message.service";
 import { DbService } from "../../services/db.service";
-import { ItemsService } from "../../services/items.service";
+import { ItemService } from "../../services/item.service";
 
 /**
  * Generated class for the AddItemModalPage page.
@@ -31,7 +31,7 @@ export class AddItemModalPage {
     private localNotifications: LocalNotifications,
     private messageService: MessageService,
     private dbService: DbService,
-    private itemsService: ItemsService
+    private itemService: ItemService
   ) {
   }
 
@@ -49,16 +49,23 @@ export class AddItemModalPage {
     let itemName = this.itemName;
     let itemExpiryDate = this.itemExpiryDate;
     // Save to db
-    this.dbService.storeItem(itemName, itemExpiryDate.substring(0, 10)).then(data => {
+    this.dbService.storeItem(itemName, itemExpiryDate.substring(0, 10)).then(
+      data => {
+      this.messageService.show('Item added successfully');
+      // Schedule delayed notification
+      let notificationId = data.insertId;
+      let notificationText = this.getNotificationText(itemName, itemExpiryDate);
+      let notificationDate = this.getNotificationDate(itemExpiryDate);
+      this.scheduleNotification(notificationId, notificationText, notificationDate);
       // refresh item list
-      this.dbService.getAllItems().then(data => {
-        this.itemsService.items = data;
+      this.dbService.getAllItems().then((data) => {
+        let items = this.itemService.data2items(data);
+        this.itemService.items = items;
         this.viewCtrl.dismiss();
       });
-      // Schedule delayed notification
-      let notificationText = this.getNotificationText(itemName, itemExpiryDate);
-      let notificationDate = this.getNotificationDate(itemExpiryDate)
-      this.scheduleNotification(notificationText, notificationDate);
+    },
+      error =>{
+      this.messageService.show('Error: ' + error);
     });
   }
 
@@ -67,7 +74,7 @@ export class AddItemModalPage {
   }
 
   private getNotificationText(itemName:string, itemExpiryDate:string) {
-    return 'Item ' + itemName + ' is expiring soon on ' + itemExpiryDate.substring(0, 10);
+    return itemName + ' is expiring soon on ' + itemExpiryDate.substring(0, 10);
   }
 
   private getNotificationDate(itemExpiryDate:string) {
@@ -76,11 +83,13 @@ export class AddItemModalPage {
     return notificationDate;
   }
 
-  private scheduleNotification(eventText:string, eventDate:Date) {
+  private scheduleNotification(notificationId:number, notificationText:string, notificationDate:Date) {
     this.localNotifications.schedule({
-      text: eventText,
-      trigger: {at: eventDate},
+      id: notificationId,
+      text: notificationText,
+      trigger: {at: notificationDate},
       led: 'FF0000',
+      vibrate: true,
       sound: null
     });
   }

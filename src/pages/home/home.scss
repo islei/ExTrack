@@ -3,8 +3,14 @@ page-home {
     background-color: #01445C;
   }
   ion-item {
-    ion-icon[name=albums] {
+    >ion-icon {
       color: #006A27;
+    }
+    .item-inner {
+      margin-left: 12px !important;
+    }
+    .item-container {
+      margin-right: 110px;
     }
     .item-title {
       font-size: 16px;
@@ -16,14 +22,30 @@ page-home {
       font-style: italic;
     }
     .item-expiry-date {
-      right: 15px;
+      right: 10px;
+      top: 13px;
       position: absolute;
+      padding: 10px;
+      color: white;
+      background-color: #008431;
+      min-width: 100px;
+      text-align: center;
     }
   }
-  ion-item.expired, ion-item.expired ion-icon[name=albums] {
-    color: #931A00;
+  ion-item.expired{
+    >ion-icon {
+      color: #931A00;
+    }
+    .item-expiry-date {
+      background-color: #B62000;
+    }
   }
-  ion-item.expires-soon, ion-item.expires-soon ion-icon[name=albums] {
-    color: #936800;
+  ion-item.expires-soon{
+    >ion-icon {
+      color: #936800;
+    }
+    .item-expiry-date {
+      background-color: #B68200;
+    }
   }
 }

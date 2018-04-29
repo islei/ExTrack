@@ -13,7 +13,7 @@ import { AddItemModalPage } from '../pages/add-item-modal/add-item-modal';
 
 import { MessageService } from "../services/message.service";
 import { DbService } from "../services/db.service";
-import { ItemsService } from "../services/items.service";
+import { ItemService } from "../services/item.service";
 
 import { MomentFromNowPipe, MomentFormatPipe } from '../pipes/moment.pipe';
 
@@ -43,7 +43,7 @@ import { MomentFromNowPipe, MomentFormatPipe } from '../pipes/moment.pipe';
     LocalNotifications,
     MessageService,
     DbService,
-    ItemsService,
+    ItemService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

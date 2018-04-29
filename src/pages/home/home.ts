@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, Platform } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AddItemModalPage } from '../add-item-modal/add-item-modal';
-import { ItemsService } from "../../services/items.service";
+import { ItemService } from "../../services/item.service";
 import { DbService } from "../../services/db.service";
+import { MessageService } from "../../services/message.service";
 
 @Component({
   selector: 'page-home',
@@ -10,12 +12,7 @@ import { DbService } from "../../services/db.service";
 })
 export class HomePage {
 
-  nowDate: Date = new Date();
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public platform: Platform, private itemsService: ItemsService, private dbService: DbService) {
-    this.platform.ready().then((readySource) => {
-      console.log(this.nowDate);
-    });
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private localNotifications: LocalNotifications, private itemService: ItemService, private dbService: DbService, private messageService: MessageService) {
   }
 
   openAddItemModal() {
@@ -29,11 +26,19 @@ export class HomePage {
 
   deleteItem(item) {
     let id = item.id;
-    this.dbService.deleteItem(id).then(data => {
+    this.dbService.deleteItem(id).then(
+      data => {
+      this.messageService.show('Item deleted successfully');
       // refresh available server list
       this.dbService.getAllItems().then(data => {
-        this.itemsService.items = data;
+        let items = this.itemService.data2items(data);
+        this.itemService.items = items;
       });
+      // cancel notification
+      this.localNotifications.cancel(id);
+    },
+      error => {
+      this.messageService.show('Error: ' + error);
     });
   }
 }

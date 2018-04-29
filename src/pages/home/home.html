@@ -12,13 +12,13 @@
     <button ion-fab (click)="openAddItemModal()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of itemsService.items; let i = index">
+    <ion-item-sliding *ngFor="let item of itemService.items; let i = index">
       <ion-item nopadding [class.expired]="item.status=='Expired'" [class.expires-soon]="item.status=='Expires soon'">
-        <ion-icon item-start name="albums"></ion-icon>
-        <p>
+        <ion-icon item-start name="stopwatch"></ion-icon>
+        <p class="item-container">
           <span class="item-title">{{item.name}}</span><br>
-
-          <span class="item-expiry-text">{{item.status}} {{item.expiryDate | momentFromNow}}</span><span class="item-expiry-date"><ion-icon name="timer"></ion-icon> {{item.expiryDate | momentFormat}}</span>
+          <span class="item-expiry-text">{{item.status}} {{item.expiryDate | momentFromNow}}</span><span class="item-expiry-date">
+ {{item.expiryDate | momentFormat}}</span>
         </p>
       </ion-item>
       <ion-item-options side="right">

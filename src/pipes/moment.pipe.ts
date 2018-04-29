@@ -17,6 +17,6 @@ export class MomentFormatPipe implements PipeTransform {
   transform(value: string, args: string[]): any {
     if (!value) return value;
 
-    return moment(value).format('LL');
+    return moment(value).format('ll');
   }
 }
